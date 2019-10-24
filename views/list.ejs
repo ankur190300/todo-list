@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title><%= title %></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link  rel="stylesheet" href="/css/liststyle.css"></link>
+</head>
+<body>
+<table align="center" width="50%" border="2 solid grey" bgcolor="white">
+<tr><td colspan="2">
+    <header >
+       <p id= "page_heading"> TODO App</p>
+    </header>
+	</td></tr>
+    <main>
+	
+		
+
+        <form method="POST" action="/create-event">
+		
+
+          <tr class="form"><td colspan="2"> 
+		  <label for="input_name">description</label>
+		  <input  type="text" name="description" placeholder="what do you need to do?" id="input_name"/></td></tr>
+			
+			<tr >
+			<td width="50%" class="form" style="border-right:1px solid">
+			<label for="input_category">category</label><br>
+            <select id="input_category" name="category" placeholder="choose a category" required="">
+				<option>choose a category</option>
+                <option> personal</option>
+                <option>cleaning</option>
+                <option>work</option>
+                <option>school</option>
+                <option>other</option>
+
+            </select>
+			</td>
+			<td width="50%" class="form" style="border-left:1px solid">
+			<label for="input_date">due date</label><br>
+			<input id="input_date" type="date" name="date" placeholder="no date" />
+			</td>
+			</tr>
+			<tr style ="height:120px">
+            <td colspan="2" style="text-align:center">
+			<button id="submit" type= "submit"><i class="fa fa-plus" ></i>  add task</button>
+			</form>
+			<button id="delete" type="submit" onclick="delfun()"><i class="fa fa-trash"></i>  delete task</button>
+
+        
+		</td>
+		</tr>
+        
+            <% for (let i of t_list){ %>
+
+            <tr>
+				
+                <td  >
+				
+				<input type="checkbox" class="task_done" id="<%= i._id %>" value="1">
+				<label for="task_done" >
+                    
+                    <%= i.description %>
+                    <br>
+                   <i class="fa fa-calendar" aria-hidden="true" style="margin:auto auto auto 19.8px" ></i> <%= i.date %>
+                    
+				<label>
+                </td>
+                <td class="category">
+				<div class="category_div">
+                    <%= i.category %>
+					</div>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+
+    </main>
+	<script type="text/javascript" src="/javascript/listscript.js" >
+
+	</script>;
+</body>
+</html>
